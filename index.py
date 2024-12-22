@@ -157,8 +157,7 @@ else:
 
 
 # Heatmap of Intercorrelation Matrix
-
-st.header(" 🧮 Intercorrelation Matrix Heatmap")
+st.header("🔥 Intercorrelation Matrix Heatmap")
 numeric_df = df_selected_team.select_dtypes(include=['float64', 'int64']) 
 if not numeric_df.empty:
     corr = numeric_df.corr() 
@@ -171,10 +170,12 @@ if not numeric_df.empty:
 else:
     st.warning("No numeric columns found in the dataset for correlation analysis.")
 
+# Analyzing Scores and Awards
 st.header("🏆 Awards and Performance")
 awards_analysis = df_selected_team.groupby('Player')[['PTS', 'Awards']].sum().sort_values(by='PTS', ascending=False)
 st.dataframe(awards_analysis, use_container_width=True)
 
+# Scoring Efficiency (Points per Minute)
 st.header("⛹️‍♀️ Scoring Efficiency (Points per Minute)")
 if 'TRB' in df_selected_team.columns and 'Pos' in df_selected_team.columns:
     df_selected_team['PTS_per_Min'] = df_selected_team['PTS'] / df_selected_team['MP']
